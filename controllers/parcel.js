@@ -23,26 +23,26 @@ module.exports = {
   updateParcel: async (req, res) => {
     const parcelId = req.params.id;
     const parcel = await Parcel.findById(parcelId);
-    if (req.body.code) {
-      parcel.code = req.body.code;
+    if (!parcel) {
+      return res.status(404).json({
+        message: "parcel not found",
+      });
     }
-    if (req.body.status) {
-      parcel.status = req.body.status;
-    }
-    if (req.body.remarks) {
-      parcel.remarks = req.body.remarks;
-    }
-    const result = await parcel.save();
-    return res
-      .status(200)
-      .json({ status: "success", data: { parcel: result } });
+    const updatedParcel = await Parcel.findByIdAndUpdate(parcelId, {
+      ...req.body,
+    });
+    return res.json(updatedParcel);
   },
 
   deleteParcel: async (req, res) => {
     const parcelId = req.params.id;
+    const parcel = await Parcel.findById(parcelId);
+    if (!parcel) {
+      return res.status(404).json({
+        message: "parcel not found",
+      });
+    }
     await Parcel.deleteOne({ _id: parcelId });
-    return res
-      .status(200)
-      .json({ status: "sucess", message: "parcel cancelled" });
+    return res.json({ status: "sucess", message: "parcel cancelled" });
   },
 };

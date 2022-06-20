@@ -65,11 +65,7 @@ const editParcelValidation = () => {
 
     body("status").optional().isString().withMessage("not a valid status"),
 
-    body("remarks")
-      .optional()
-      .isString()
-      .withMessage("invalid remarks")
-      .isLength({ min: 5, max: 255 }),
+    body("remarks").optional().isArray().withMessage("invalid remarks"),
   ];
 };
 

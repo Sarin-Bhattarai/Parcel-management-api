@@ -12,6 +12,16 @@ const parcelSchema = new mongoose.Schema(
       enum: ["pending", "processing", "delivering", "rejected", "delivered"],
       default: "pending",
     },
+
+    name: {
+      type: String,
+      required: true,
+    },
+
+    description: {
+      type: String,
+    },
+
     remarks: [
       {
         type: String,
