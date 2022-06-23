@@ -25,7 +25,7 @@ const registerUserValidation = () => {
       .isString()
       .withMessage("Not a valid location")
       .isLength({ min: 4 })
-      .withMessage("location must be at least 4 character long"),
+      .withMessage("Location must be at least 4 character long"),
   ];
 };
 
@@ -50,7 +50,19 @@ const parcelValidation = () => {
       .isNumeric()
       .withMessage("Invalid code")
       .isLength({ min: 4, max: 4 })
-      .withMessage("code must be 4 digit and mustn't exceed than that"),
+      .withMessage("Code must be 4 digit and mustn't exceed than that"),
+
+    body("name")
+      .isString()
+      .withMessage("Invalid name")
+      .isLength({ min: 4, max: 25 })
+      .withMessage("Name must be at least 4 character long"),
+
+    body("description")
+      .isString()
+      .withMessage("Invalid description")
+      .isLength({ min: 4, max: 255 })
+      .withMessage("Description must be at least 4 character long"),
   ];
 };
 
@@ -61,11 +73,25 @@ const editParcelValidation = () => {
       .isNumeric()
       .withMessage("Invalid code")
       .isLength({ min: 4, max: 4 })
-      .withMessage("code must be 4 digit and mustn't exceed than that"),
+      .withMessage("Code must be 4 digit and mustn't exceed than that"),
 
-    body("status").optional().isString().withMessage("not a valid status"),
+    body("status").optional().isString().withMessage("Not a valid status"),
 
-    body("remarks").optional().isArray().withMessage("invalid remarks"),
+    body("remarks").optional().isArray().withMessage("Invalid remarks"),
+
+    body("name")
+      .optional()
+      .isString()
+      .withMessage("Invalid name")
+      .isLength({ min: 4, max: 25 })
+      .withMessage("Name must be at least 4 character long"),
+
+    body("description")
+      .optional()
+      .isString()
+      .withMessage("Invalid description")
+      .isLength({ min: 4, max: 255 })
+      .withMessage("Description must be at least 4 character long"),
   ];
 };
 

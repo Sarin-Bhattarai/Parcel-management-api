@@ -8,7 +8,7 @@ module.exports = {
     if (checkUser) {
       return res.status(400).json({
         status: "error",
-        message: "email already in use",
+        message: "Email already in use",
       });
     }
     const newUser = new User({
@@ -30,7 +30,7 @@ module.exports = {
     if (!user) {
       return res.status(404).json({
         status: "error",
-        message: "user doesn't exist",
+        message: "User doesn't exist",
       });
     }
     const passwordMatch = bcrypt.compareSync(req.body.password, user.password);
@@ -38,7 +38,7 @@ module.exports = {
       const token = jwt.sign({ _id: user._id }, process.env.JWT_PRIVATE_KEY);
       res.header("x-auth-token", token).send(token);
     } else {
-      return res.status(400).json({ message: "invalid password" });
+      return res.status(400).json({ message: "Invalid password" });
     }
   },
 };
