@@ -35,6 +35,6 @@ router.put(
 router.delete("/:id", wrapAsync(parcelController.deleteParcel));
 
 //search parcel
-router.get("/search", wrapAsync(parcelController.listSearch));
+router.get("/search/:key", wrapAsync(parcelController.listSearch));
 
 module.exports = router;

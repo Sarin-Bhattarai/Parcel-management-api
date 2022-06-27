@@ -50,28 +50,10 @@ module.exports = {
   },
 
   //search functionality
-  listSearch: (req, res) => {
-    //create query object to hold search value and code value
-    const query = {};
-    //assign search value to query.name
-    if (req.query.search) {
-      //using regex = regular expression
-      //i is for case insensitivity
-      query.name = { $regex: req.query.search, $options: "i" };
-      //assign code value to query.code
-      if (req.query.code && req.query.code != "All") {
-        query.code = req.query.code;
-      }
-      //find the parcel based on query object wih 2 properties
-      //search and code
-      Parcel.find(query, (err, parcel) => {
-        if (err) {
-          return res.json({
-            error: handleError(err),
-          });
-        }
-        res.json(parcel);
-      });
-    }
+  listSearch: async (req, res) => {
+    let data = await Parcel.find({
+      $or: [{ name: { $regex: req.params.key, $options: "i" } }],
+    });
+    res.json(data);
   },
 };
