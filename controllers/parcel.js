@@ -3,7 +3,7 @@ var handleError = require("../helpers/handleError");
 
 module.exports = {
   getallParcels: async (req, res) => {
-    const parcels = await Parcel.find();
+    const parcels = await Parcel.find().sort({ createdAt: -1 });
     return res.json(parcels);
   },
 
@@ -16,6 +16,7 @@ module.exports = {
     const parcelDetails = {
       code: req.body.code,
       name: req.body.name,
+      location: req.body.location,
       description: req.body.description,
     };
     const parcels = new Parcel(parcelDetails);
@@ -33,6 +34,7 @@ module.exports = {
     }
     const updatedParcel = await Parcel.findByIdAndUpdate(parcelId, {
       ...req.body,
+      $push: { logs: parcel },
     });
     return res.json(updatedParcel);
   },
@@ -51,8 +53,9 @@ module.exports = {
 
   //search functionality
   listSearch: async (req, res) => {
+    const code = parseInt(req.params.code);
     let data = await Parcel.find({
-      $or: [{ name: { $regex: req.params.key, $options: "i" } }],
+      code: code,
     });
     res.json(data);
   },

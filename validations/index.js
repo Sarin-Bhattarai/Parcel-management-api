@@ -63,6 +63,12 @@ const parcelValidation = () => {
       .withMessage("Invalid description")
       .isLength({ min: 4, max: 255 })
       .withMessage("Description must be at least 4 character long"),
+
+    body("location")
+      .isString()
+      .withMessage("Not a valid location")
+      .isLength({ min: 4 })
+      .withMessage("Location must be at least 4 character long"),
   ];
 };
 
@@ -92,6 +98,13 @@ const editParcelValidation = () => {
       .withMessage("Invalid description")
       .isLength({ min: 4, max: 255 })
       .withMessage("Description must be at least 4 character long"),
+
+    body("location")
+      .optional()
+      .isString()
+      .withMessage("Not a valid location")
+      .isLength({ min: 4 })
+      .withMessage("Location must be at least 4 character long"),
   ];
 };
 

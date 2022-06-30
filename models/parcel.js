@@ -5,6 +5,7 @@ const parcelSchema = new mongoose.Schema(
   {
     code: {
       type: Number,
+      unique: true,
       required: true,
     },
     status: {
@@ -14,6 +15,11 @@ const parcelSchema = new mongoose.Schema(
     },
 
     name: {
+      type: String,
+      required: true,
+    },
+
+    location: {
       type: String,
       required: true,
     },
@@ -28,7 +34,9 @@ const parcelSchema = new mongoose.Schema(
         trim: true,
       },
     ],
+    logs: [{ type: mongoose.Schema.Types.Mixed }],
   },
+
   { timestamps: true }
 );
 
