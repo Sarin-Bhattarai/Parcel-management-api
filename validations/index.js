@@ -64,11 +64,17 @@ const parcelValidation = () => {
       .isLength({ min: 4, max: 255 })
       .withMessage("Description must be at least 4 character long"),
 
-    body("location")
+    body("origin")
       .isString()
-      .withMessage("Not a valid location")
+      .withMessage("Not a valid origin")
       .isLength({ min: 4 })
-      .withMessage("Location must be at least 4 character long"),
+      .withMessage("Origin must be at least 4 character long"),
+
+    body("destination")
+      .isString()
+      .withMessage("Not a valid destination")
+      .isLength({ min: 4 })
+      .withMessage("Destination must be at least 4 character long"),
   ];
 };
 
@@ -99,12 +105,19 @@ const editParcelValidation = () => {
       .isLength({ min: 4, max: 255 })
       .withMessage("Description must be at least 4 character long"),
 
-    body("location")
+    body("origin")
       .optional()
       .isString()
-      .withMessage("Not a valid location")
+      .withMessage("Not a valid origin")
       .isLength({ min: 4 })
-      .withMessage("Location must be at least 4 character long"),
+      .withMessage("Origin must be at least 4 character long"),
+
+    body("destination")
+      .optional()
+      .isString()
+      .withMessage("Not a valid destination")
+      .isLength({ min: 4 })
+      .withMessage("Destination must be at least 4 character long"),
   ];
 };
 

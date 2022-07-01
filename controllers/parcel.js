@@ -1,5 +1,4 @@
 var Parcel = require("../models/parcel");
-var handleError = require("../helpers/handleError");
 
 module.exports = {
   getallParcels: async (req, res) => {
@@ -16,7 +15,8 @@ module.exports = {
     const parcelDetails = {
       code: req.body.code,
       name: req.body.name,
-      location: req.body.location,
+      origin: req.body.origin,
+      destination: req.body.destination,
       description: req.body.description,
     };
     const parcels = new Parcel(parcelDetails);

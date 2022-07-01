@@ -6,7 +6,6 @@ var {
 } = require("../validations/index");
 var { wrapAsync } = require("../helpers/catchHandler");
 var handleError = require("../helpers/handleError");
-var { checkLogin } = require("../middlewares/checkLogin");
 var parcelController = require("../controllers/parcel");
 
 //post parcel

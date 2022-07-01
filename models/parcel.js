@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Schema; //for references
 
 const parcelSchema = new mongoose.Schema(
   {
@@ -19,7 +18,12 @@ const parcelSchema = new mongoose.Schema(
       required: true,
     },
 
-    location: {
+    origin: {
+      type: String,
+      required: true,
+    },
+
+    destination: {
       type: String,
       required: true,
     },
