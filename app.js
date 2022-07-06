@@ -38,9 +38,9 @@ mongoose
   .catch((err) => console.log(err));
   
 // app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/auth", authsRouter);
-app.use("/parcels", parcelsRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/auth", authsRouter);
+app.use("/api/parcels", parcelsRouter);
 
 //Send index.html for all other request
 app.get('/*', function (req, res) {
