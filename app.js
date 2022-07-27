@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //Make frontend-build folder statically available to the world
-app.use('/', express.static(path.join(__dirname,'frontend-build')))
+app.use("/", express.static(path.join(__dirname, "frontend-build")));
 
 mongoose
   .connect(process.env.DATABASE, {
@@ -36,16 +36,16 @@ mongoose
   })
   .then(() => console.log("database connection successfull"))
   .catch((err) => console.log(err));
-  
+
 // app.use("/", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/auth", authsRouter);
 app.use("/api/parcels", parcelsRouter);
 
 //Send index.html for all other request
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname,'frontend-build', 'index.html'));
- });
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "frontend-build", "index.html"));
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
